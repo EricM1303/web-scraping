@@ -18,6 +18,7 @@ anexo = "Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf"
 csv_path = os.path.join(dir_name, "tabela_procedimentos.csv")
 pdf_path = os.path.join(dir_name, anexo)
 
+# Lista que conterá o dataframe concatenado
 all_tables = []
 
 # Leitura do PDF
@@ -27,7 +28,7 @@ with pdfplumber.open(pdf_path) as pdf:
         tables = page.extract_tables()  
         for table in tables:
             df = pd.DataFrame(table)  # Criar DataFrame com a tabela extraída
-            all_tables.append(df)
+            all_tables.append(df) # Adiciona a lista
 
 
 # Concatenar todas as tabelas em um único DataFrame

@@ -8,6 +8,7 @@ os.makedirs('pdfs', exist_ok=True)
 zip_path = os.path.join('pdfs', 'anexos.zip')
 
 link = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos"
+inicio_url = "https://www.gov.br/ans/pt-br/"
 
 # Acessar site com Headers (Para requisição)
 headers = {
@@ -33,7 +34,7 @@ with ZipFile(zip_path, 'w') as zipf:
         href = anexo.get("href")
         
         # Verificar se o link é um PDF válido
-        if href and href.startswith('https://www.gov.br/ans/pt-br/') and href.endswith('.pdf'):
+        if href and href.startswith(inicio_url) and href.endswith('.pdf'):
             print(f"Baixando: {href}")
             
             response = requests.get(href)

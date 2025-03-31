@@ -16,7 +16,10 @@ headers = {
 }
 
 # Requisição para receber HTML da página
-requisicao = requests.get(link, headers=headers)
+try:
+    requisicao = requests.get(link, headers=headers)
+except requests.exceptions.RequestException: 
+    print("Não foi possível acessar o site.")
 
 # Instanciar o BeautifulSoup          # leitor html
 site = BeautifulSoup(requisicao.text, "html.parser")
